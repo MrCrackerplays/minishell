@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strarr_free.c                                   :+:    :+:            */
+/*   tmp_open.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/05 15:52:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 12:33:42 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/07 15:28:09 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/07 16:20:30 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arr_str.h"
+#include "../libft.h"
+#include "fcntl.h"
 
-void	ft_strarr_free(char	**arr)
+int	ft_tmp_open(char *name, int mode)
 {
-	int	i;
+	t_string	*tmp;
+	int			out;
 
-	i = 0;
-	while (arr[i])
-	{
-		ft_free1(arr[i]);
-		i++;
-	}
-	free(arr);
+	tmp = ft_str_new(getenv("TMPDIR"));
+	if (!tmp)
+		ft_exit_error("libft malloc fail");
+	ft_str_cat_s(tmp, name);
+	out = open(tmp->text, mode, 0777);
+	ft_str_free(tmp);
+	return (out);
 }

@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strarr_free.c                                   :+:    :+:            */
+/*   pipe_close.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/05 15:52:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 12:33:42 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/07 14:20:00 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/08 14:47:19 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arr_str.h"
+#include <pipex_internal.h>
 
-void	ft_strarr_free(char	**arr)
+void	pipe_close(int pipe[2])
 {
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		ft_free1(arr[i]);
-		i++;
-	}
-	free(arr);
+	close(pipe[0]);
+	close(pipe[1]);
 }

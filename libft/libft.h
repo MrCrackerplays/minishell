@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/16 17:30:50 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/11/21 18:04:53 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/07 15:30:35 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,22 @@
 // -~{ READ FILE }~- //
 
 char		*ft_get_next_line(int fd);
-char		*ft_readfile(int fd);
 int			ft_line_len(char *file, int line);
 int			ft_lines(char *file);
+
+char		*ft_readfile(int fd);
+void		ft_writefile(char *name, char *text);
+void		ft_writefile_ms(char *name, t_string *str);
+void		ft_addfile(char *name, char *text);
+void		ft_addfile_ms(char *name, t_string *str);
+
+int			ft_tmp_open(char *name, int mode);
+
+char		*ft_tmp_read(char *name);
+void		ft_tmp_write(char *name, char *text);
+void		ft_tmp_write_ms(char *name, t_string *str);
+void		ft_tmp_add(char *name, char *text);
+void		ft_tmp_add_ms(char *name, t_string *str);
 
 // -~{ PRINTF }~- //
 
@@ -74,9 +87,9 @@ int			ft_printf(const char *s, ...);
 
 // -~{ LIBFT NEW }~- //
 
-void		ft_freear(void	**ar);
 long		ft_latoi(const char *nptr);
 char		*ft_strcat(char *d, char *s);
+void		ft_exit_error(char *error);
 
 // -~{ LIBFT }~- //
 

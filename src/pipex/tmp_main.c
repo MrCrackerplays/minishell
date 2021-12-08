@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strarr_free.c                                   :+:    :+:            */
+/*   tmp_main.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/05 15:52:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 12:33:42 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/11/18 15:25:25 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/08 14:46:43 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arr_str.h"
+#include <pipex_internal.h>
+#include <pipex.h>
 
-void	ft_strarr_free(char	**arr)
+int	main(int argc, char **argv, char **envp)
 {
-	int	i;
+	int			i;
+	t_strlist	*lst;
 
-	i = 0;
-	while (arr[i])
+	i = 1;
+	lst = NULL;
+	while (argv[i])
 	{
-		ft_free1(arr[i]);
+		ft_strlst_add_back(&lst, ft_strlst_new(ft_str_new(argv[i])));
 		i++;
 	}
-	free(arr);
+	pipex(lst, envp);
+	ft_printf("\n-~{ END }~-\n");
+	exit(0);
 }

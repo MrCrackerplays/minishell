@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strarr_free.c                                   :+:    :+:            */
+/*   str_list_to_arr.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/05 15:52:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 12:33:42 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/07 12:26:28 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/07 15:53:36 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arr_str.h"
+#include "list_str.h"
 
-void	ft_strarr_free(char	**arr)
+char	**ft_strlst_to_arr(t_strlist *lst)
 {
-	int	i;
+	char		**arr;
+	int			i;
+	t_strlist	*lst_p;
 
+	arr = ft_calloc(ft_strlst_size(lst) + 1, sizeof(char *));
 	i = 0;
-	while (arr[i])
+	lst_p = lst;
+	while (lst_p && lst_p->str)
 	{
-		ft_free1(arr[i]);
+		arr[i] = ft_strdup(lst_p->str->text);
+		if (!arr[i])
+		{
+			ft_strarr_free(arr);
+			return (NULL);
+		}
+		lst_p = lst_p->next;
 		i++;
 	}
-	free(arr);
+	return (arr);
 }

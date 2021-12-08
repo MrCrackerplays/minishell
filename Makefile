@@ -4,11 +4,23 @@ CFLAGS ?= -Wall -Werror -Wextra
 ifdef DEBUG
 CFLAGS := -g $(CFLAGS)
 endif
-OBJECTS := minishell.o line_parser.o quote_handler.o
+SUB_OBJ_DIR := obj/pipex obj/pipex/builtins obj/pipex/utils
+OBJECTS := minishell.o line_parser.o quote_handler.o \
+	pipex/init.o \
+	pipex/io.o \
+	pipex/pipex.o \
+	pipex/run.o \
+	pipex/builtins/cd.o \
+	pipex/builtins/echo.o \
+	pipex/builtins/pwd.o \
+	pipex/utils/exec.o \
+	pipex/utils/get_arg.o \
+	pipex/utils/heredoc.o \
+	pipex/utils/pipe_close.o
 OBJECTS := $(addprefix obj/,$(OBJECTS))
 INCLUDE := headers libft
 INCLUDE := $(addprefix -I,$(INCLUDE))
-HEADER_FILES := line_parser.h quote_handler.h
+HEADER_FILES := line_parser.h quote_handler.h pipex.h
 HEADER_FILES := $(addprefix headers/,$(HEADER_FILES))
 
 all: $(NAME)
@@ -17,9 +29,12 @@ $(NAME): $(OBJECTS)
 	$(MAKE) -C libft
 	$(CC) $(CFLAGS) $(OBJECTS) -lreadline libft/libft.a -o $(NAME)
 
-obj/%.o: src/%.c $(HEADER_FILES)
-	@mkdir -p obj
+obj/%.o: src/%.c $(HEADER_FILES) obj
+	#@mkdir -p obj
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+obj:
+	@mkdir obj $(SUB_OBJ_DIR)
 
 clean:
 	rm -f $(OBJECTS)

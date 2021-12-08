@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strarr_free.c                                   :+:    :+:            */
+/*   pipex.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/05 15:52:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 12:33:42 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/08 14:45:24 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/08 14:46:12 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arr_str.h"
+#ifndef PIPEX_H
+# define PIPEX_H
 
-void	ft_strarr_free(char	**arr)
-{
-	int	i;
+# include <libft.h>
 
-	i = 0;
-	while (arr[i])
-	{
-		ft_free1(arr[i]);
-		i++;
-	}
-	free(arr);
-}
+void	pipex(t_strlist *lst, char **envp);
+
+#endif

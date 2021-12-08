@@ -6,7 +6,7 @@
 #    By: rdrazsky <rdrazsky@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/04 13:52:48 by rdrazsky      #+#    #+#                  #
-#    Updated: 2021/12/05 14:17:12 by pdruart       ########   odam.nl          #
+#    Updated: 2021/12/07 15:30:50 by rdrazsky      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,10 @@ PRINTF_FILES = \
 READFILE_FILES = \
 	get_next_line \
 	get_next_line_utils \
-	readfile
+	readfile \
+	writefile \
+	tmp \
+	tmp_open
 LIST_FILES = \
 	list_find \
 	list_info \
@@ -79,7 +82,8 @@ STR_LIST_FILES = \
 	str_list_info \
 	str_list_iter \
 	str_list_manage \
-	str_list_mem
+	str_list_mem \
+	str_list_to_arr
 INT_LIST_FILES = \
 	int_list_find \
 	int_list_info \
