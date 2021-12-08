@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 14:45:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:46:12 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 17:36:08 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include <libft.h>
 
-void	pipex(t_strlist *lst, char **envp);
+typedef struct s_vars{
+	t_strlist	*vars;
+	t_strlist	*env;
+}	t_vars;
+
+t_vars	*get_t_vars(void);
+void	t_vats_init(char **envp);
+
+void	pipex(t_strlist *lst);
 
 #endif

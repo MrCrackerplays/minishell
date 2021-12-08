@@ -6,12 +6,11 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/23 15:40:35 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:47:06 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 17:36:23 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex_internal.h>
-#include <pipex.h>
 
 static void	pipex_stdout(bool p_switch)
 {
@@ -33,7 +32,7 @@ static void	clear_tmp(t_pipex_data *data)
 	close(ft_tmp_open(TMP_PIP2, O_CREAT | O_TRUNC));
 }
 
-void	pipex(t_strlist *lst, char **envp)
+void	pipex(t_strlist *lst)
 {
 	t_pipex_data	*data;
 
@@ -42,7 +41,7 @@ void	pipex(t_strlist *lst, char **envp)
 	{
 		pipex_data_clear(data);
 		pipex_init_io(data, lst);
-		pipex_run_command(data, envp);
+		pipex_run_command(data);
 		while (lst)
 		{
 			if (ft_strncmp(lst->str->text, "|", 2) == 0

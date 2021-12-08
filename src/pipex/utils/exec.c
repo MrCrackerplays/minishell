@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/23 15:39:34 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:47:25 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 17:37:11 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	exec2(int in, int out, t_strlist *lst, char **envp)
 	perror("execve fail");
 }
 
-void	exec3(t_strlist *lst, char **envp)
+void	exec3(t_strlist *lst)
 {
 	char		**arr;
 	bool		is_env;
@@ -64,6 +64,6 @@ void	exec3(t_strlist *lst, char **envp)
 	arr = ft_strlst_to_arr(lst);
 	if (!arr)
 		ft_exit_error("malloc fail");
-	execve(lst->str->text, arr, envp);
+	execve(lst->str->text, arr, ft_strlst_to_arr(get_t_vars()->env));
 	perror("execve fail");
 }

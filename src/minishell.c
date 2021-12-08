@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/08 17:13:09 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/08 17:38:20 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #include <pipex.h>
 
-void	read_and_execute(char **envp)
+void	read_and_execute(void)
 {
 	char		*str;
 	t_strlist	*lst;
@@ -32,7 +32,7 @@ void	read_and_execute(char **envp)
 			break ;
 		lst = parse_line(str);
 		//printf("parsed line\n");
-		pipex(lst, envp);
+		pipex(lst);
 		//ft_strlst_print(lst);
 		ft_strlst_free(lst);
 	}
@@ -40,7 +40,8 @@ void	read_and_execute(char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	read_and_execute(envp);
+	t_vats_init(envp);
+	read_and_execute();
 	if (argc && argv)
 		exit(0);
 }
