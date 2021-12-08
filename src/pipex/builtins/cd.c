@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strarr_free.c                                   :+:    :+:            */
+/*   cd.c                                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/05 15:52:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 12:33:42 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/08 13:36:37 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/08 13:50:54 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arr_str.h"
+#include <pipex.h>
 
-void	ft_strarr_free(char	**arr)
+bool	pipex_cd(t_strlist *lst)
 {
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		ft_free1(arr[i]);
-		i++;
-	}
-	free(arr);
+	if (!lst)
+		return (true);
+	chdir(lst->str->text);
+	return (true);
 }

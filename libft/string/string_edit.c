@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/20 19:08:04 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/03 19:41:44 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/05 19:03:06 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_str_cat(t_string *des, t_string *src)
 {
 	char	*tmp;
 
+	if (!des || !src)
+		return ;
 	tmp = malloc(sizeof(char) * (des->len + src->len + 1));
 	if (!tmp)
 		return ;
@@ -39,4 +41,9 @@ void	ft_str_cat(t_string *des, t_string *src)
 	free(des->text);
 	des->text = tmp;
 	des->len = des->len + src->len;
+}
+
+void	ft_str_cat_s(t_string *des, char *src)
+{
+	ft_str_cat(des, ft_str_new(src));
 }

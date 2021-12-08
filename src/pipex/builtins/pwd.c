@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strarr_free.c                                   :+:    :+:            */
+/*   pwd.c                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/05 15:52:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 12:33:42 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/08 13:31:00 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/08 14:20:13 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arr_str.h"
+#include <pipex.h>
 
-void	ft_strarr_free(char	**arr)
+bool	pipex_pwd(t_pipex_data *data)
 {
-	int	i;
+	char	*tmp;
 
-	i = 0;
-	while (arr[i])
-	{
-		ft_free1(arr[i]);
-		i++;
-	}
-	free(arr);
+	tmp = getcwd(NULL, 0);
+	ft_putendl_fd(tmp, data->p[1]);
+	free(tmp);
+	return (true);
 }

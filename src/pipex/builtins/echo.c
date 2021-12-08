@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strarr_free.c                                   :+:    :+:            */
+/*   echo.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/05 15:52:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 12:33:42 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/08 13:15:38 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/08 14:11:22 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "arr_str.h"
+#include <pipex.h>
 
-void	ft_strarr_free(char	**arr)
+bool	pipex_echo(t_strlist *lst, t_pipex_data *data)
 {
-	int	i;
+	t_strlist	*tmp;
 
-	i = 0;
-	while (arr[i])
+	if (!lst)
+		return (true);
+	tmp = lst;
+	if (ft_strncmp(lst->str->text, "-n", 3) == 0)
+		tmp = lst->next;
+	while (tmp)
 	{
-		ft_free1(arr[i]);
-		i++;
+		write(1, tmp->str->text, tmp->str->len);
+		if (tmp->next)
+			ft_putchar_fd(' ', data->p[1]);
+		tmp = tmp->next;
 	}
-	free(arr);
+	if (ft_strncmp(lst->str->text, "-n", 3))
+		ft_putchar_fd('\n', data->p[1]);
+	return (true);
 }
