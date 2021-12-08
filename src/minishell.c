@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/08 15:18:45 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 17:13:09 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	read_and_execute(char **envp)
 	while (1)
 	{
 		str = readline(">");
+		add_history(str);
 		if (!str || ft_strncmp(str, "exit", ft_strlen(str)) == 0)
 			break ;
 		lst = parse_line(str);
