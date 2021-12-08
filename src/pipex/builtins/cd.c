@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:36:37 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:47:38 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 15:20:50 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ bool	pipex_cd(t_strlist *lst)
 {
 	if (!lst)
 		return (true);
-	chdir(lst->str->text);
+	if (strncmp(lst->str->text, "~", 2) == 0)
+		chdir(getenv("HOME"));
+	else
+		chdir(lst->str->text);
 	return (true);
 }

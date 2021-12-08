@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 13:45:13 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:53:54 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 15:17:48 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static bool	buildins_in(t_pipex_data *data)
 		pipex_echo(data->com->next, data);
 	else if (ft_strncmp(data->com->str->text, "pwd", 4) == 0)
 		pipex_pwd(data);
+	else
+		return (false);
 	return (true);
 }
 
