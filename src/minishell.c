@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/08 13:58:03 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/08 14:50:15 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 #include <libft.h>
 #include <line_parser.h>
 
-void	read_and_execute(void)
+#include <pipex.h>
+
+void	read_and_execute(char **envp)
 {
 	char		*str;
 	t_strlist	*lst;
@@ -29,12 +31,15 @@ void	read_and_execute(void)
 			break ;
 		lst = parse_line(str);
 		printf("parsed line\n");
-		ft_strlst_print(lst);
+		pipex(lst, envp);
+		//ft_strlst_print(lst);
 		ft_strlst_free(lst);
 	}
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
-	read_and_execute();
+	read_and_execute(envp);
+	if (argc && argv)
+		exit(0);
 }

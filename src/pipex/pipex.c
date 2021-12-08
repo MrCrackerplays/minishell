@@ -6,10 +6,11 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/23 15:40:35 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:14:29 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 14:47:06 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <pipex_internal.h>
 #include <pipex.h>
 
 static void	pipex_stdout(bool p_switch)

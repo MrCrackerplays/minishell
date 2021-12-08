@@ -6,11 +6,11 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 14:20:00 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 12:43:49 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 14:47:19 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pipex.h>
+#include <pipex_internal.h>
 
 void	pipe_close(int pipe[2])
 {

@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   tmp_main.c                                         :+:    :+:            */
+/*   pipex.h                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/18 15:25:25 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:46:43 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/08 14:45:24 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/08 14:46:12 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pipex_internal.h>
-#include <pipex.h>
+#ifndef PIPEX_H
+# define PIPEX_H
 
-int	main(int argc, char **argv, char **envp)
-{
-	int			i;
-	t_strlist	*lst;
+# include <libft.h>
 
-	i = 1;
-	lst = NULL;
-	while (argv[i])
-	{
-		ft_strlst_add_back(&lst, ft_strlst_new(ft_str_new(argv[i])));
-		i++;
-	}
-	pipex(lst, envp);
-	ft_printf("\n-~{ END }~-\n");
-	exit(0);
-}
+void	pipex(t_strlist *lst, char **envp);
+
+#endif

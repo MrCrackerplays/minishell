@@ -6,11 +6,11 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:36:37 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 13:50:54 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 14:47:38 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pipex.h>
+#include <pipex_internal.h>
 
 bool	pipex_cd(t_strlist *lst)
 {

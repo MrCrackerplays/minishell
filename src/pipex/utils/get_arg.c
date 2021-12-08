@@ -6,11 +6,11 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/21 16:52:17 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 12:43:36 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 14:47:23 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pipex.h>
+#include <pipex_internal.h>
 
 static bool	get_path(t_string *arg, char **envp)
 {

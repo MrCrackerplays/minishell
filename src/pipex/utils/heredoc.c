@@ -6,11 +6,11 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 17:29:03 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 12:43:41 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 14:47:21 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pipex.h>
+#include <pipex_internal.h>
 
 void	pipex_heredoc(t_strlist *lst, t_pipex_data *data)
 {

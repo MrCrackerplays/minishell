@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pipex.h                                            :+:    :+:            */
+/*   pipex_internal.h                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/18 16:16:27 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:19:59 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 14:45:12 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_INTERNAL_H
+# define PIPEX_INTERNAL_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -19,7 +19,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 
-# include "../../libft/libft.h"
+# include <libft.h>
 
 # define TMP_PIP1 "minishell_pipe1.tmp"
 # define TMP_PIP2 "minishell_pipe2.tmp"

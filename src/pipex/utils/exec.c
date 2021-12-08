@@ -6,11 +6,11 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/23 15:39:34 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:18:28 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 14:47:25 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pipex.h>
+#include <pipex_internal.h>
 
 void	exec(int in, int out, char *arg, char **envp)
 {

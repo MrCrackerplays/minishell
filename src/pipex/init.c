@@ -6,11 +6,11 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 17:31:54 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:10:52 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 14:47:16 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pipex.h>
+#include <pipex_internal.h>
 
 t_pipex_data	*pipex_data_new(void)
 {

@@ -6,11 +6,11 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:31:00 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:20:13 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 14:47:33 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pipex.h>
+#include <pipex_internal.h>
 
 bool	pipex_pwd(t_pipex_data *data)
 {
