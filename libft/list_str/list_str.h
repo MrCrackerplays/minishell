@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/12 17:04:46 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 12:36:08 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 18:35:47 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ t_strlist		*ft_strlst_new(t_string *text);
 void			ft_strlst_add_back(t_strlist **lst, t_strlist *new);
 void			ft_strlst_add_front(t_strlist **lst, t_strlist *new);
 int				ft_strlst_size(t_strlist *lst);
+
 t_strlist		*ft_strlst_last(t_strlist *lst);
+t_strlist		*ft_strlst_find(t_strlist *lst, char *text);
+int				ft_strlst_find_indx(t_strlist *lst, char *text);
+
 void			ft_strlst_free(t_strlist *lst);
 void			ft_strlst_iter(t_strlist *lst, void (*f)(t_string *));
 

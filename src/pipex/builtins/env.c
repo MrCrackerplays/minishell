@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   heredoc.c                                          :+:    :+:            */
+/*   env.c                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/12/05 17:29:03 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 19:41:49 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/08 18:42:45 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/08 18:47:01 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex_internal.h>
 
-void	pipex_heredoc(t_strlist *lst, t_pipex_data *data)
+bool	pipex_env(t_pipex_data *data)
 {
-	char		*tmp;
-	t_string	*file;
+	t_strlist	*tmp;
 
-	if (data->in)
-		data->in = NULL;
-	data->use_tmp = true;
-	file = ft_str_new("");
-	ft_putstr_fd(">", 1);
-	tmp = ft_get_next_line(0);
-	while (ft_strncmp(tmp, lst->str->text, lst->str->len) != 0)
+	tmp = get_t_vars()->env;
+	while (tmp)
 	{
-		ft_str_cat_s(file, tmp);
-		ft_putstr_fd(">", 1);
-		free(tmp);
-		tmp = ft_get_next_line(0);
+		ft_putendl_fd(tmp->str->text, data->p[1]);
+		tmp = tmp->next;
 	}
-	free(tmp);
-	ft_tmp_write_ms(TMP_HERE, file);
-	ft_str_free(file);
+	return (true);
 }

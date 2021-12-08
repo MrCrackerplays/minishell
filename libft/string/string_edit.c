@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/20 19:08:04 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/05 19:03:06 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 19:31:11 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,9 @@ void	ft_str_cat(t_string *des, t_string *src)
 
 void	ft_str_cat_s(t_string *des, char *src)
 {
-	ft_str_cat(des, ft_str_new(src));
+	t_string	*tmp;
+
+	tmp = ft_str_new(src);
+	ft_str_cat(des, tmp);
+	ft_str_free(tmp);
 }
