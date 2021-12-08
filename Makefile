@@ -16,7 +16,8 @@ OBJECTS := minishell.o line_parser.o quote_handler.o \
 	pipex/utils/exec.o \
 	pipex/utils/get_arg.o \
 	pipex/utils/heredoc.o \
-	pipex/utils/pipe_close.o
+	pipex/utils/pipe_close.o \
+	pipex/utils/vars.o
 OBJECTS := $(addprefix obj/,$(OBJECTS))
 INCLUDE := headers libft
 INCLUDE := $(addprefix -I,$(INCLUDE))

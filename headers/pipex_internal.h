@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/18 16:16:27 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:45:12 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 17:38:05 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdio.h>
 
 # include <libft.h>
+
+# include <pipex.h>
 
 # define TMP_PIP1 "minishell_pipe1.tmp"
 # define TMP_PIP2 "minishell_pipe2.tmp"
@@ -49,7 +51,7 @@ bool			get_arg2(t_string *arg);
 
 void			exec(int in, int out, char *arg, char **envp);
 void			exec2(int in, int out, t_strlist *lst, char **envp);
-void			exec3(t_strlist *lst, char **envp);
+void			exec3(t_strlist *lst);
 
 void			run_basic(char **argv, char **envp);
 void			run_multible(char **argv, char **envp);
@@ -66,8 +68,8 @@ bool			pipex_io(t_strlist *parser, t_pipex_data *data);
 
 void			pipex_heredoc(t_strlist *lst, t_pipex_data *data);
 
-void			pipex_run_command(t_pipex_data *data, char **envp);
+void			pipex_run_command(t_pipex_data *data);
 
-void			pipex(t_strlist *lst, char **envp);
+void			pipex(t_strlist *lst);
 
 #endif

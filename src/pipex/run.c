@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 13:45:13 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 15:17:48 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 17:36:42 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static bool	buildins(t_pipex_data *data)
 	return (true);
 }
 
-static	void	child_run(t_pipex_data *data, char **envp)
+static	void	child_run(t_pipex_data *data)
 {
 	if (data->in)
 		data->p[0] = open(data->in->text, O_RDONLY);
@@ -46,10 +46,10 @@ static	void	child_run(t_pipex_data *data, char **envp)
 		ft_exit_error("dup fail");
 	if (buildins_in(data))
 		exit(0);
-	exec3(data->com, envp);
+	exec3(data->com);
 }
 
-void	pipex_run_command(t_pipex_data *data, char **envp)
+void	pipex_run_command(t_pipex_data *data)
 {
 	int			pid;
 	t_strlist	*tmp;
@@ -69,6 +69,6 @@ void	pipex_run_command(t_pipex_data *data, char **envp)
 	if (pid == -1)
 		ft_exit_error("pid fail");
 	if (pid == 0)
-		child_run(data, envp);
+		child_run(data);
 	wait(0);
 }
