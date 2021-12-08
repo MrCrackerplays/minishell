@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/08 17:38:20 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 19:40:10 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	read_and_execute(void)
 		pipex(lst);
 		//ft_strlst_print(lst);
 		ft_strlst_free(lst);
+		free(str);
 	}
 }
 

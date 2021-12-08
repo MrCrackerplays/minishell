@@ -10,9 +10,13 @@ OBJECTS := minishell.o line_parser.o quote_handler.o \
 	pipex/io.o \
 	pipex/pipex.o \
 	pipex/run.o \
-	pipex/builtins/cd.o \
 	pipex/builtins/echo.o \
+	pipex/builtins/cd.o \
 	pipex/builtins/pwd.o \
+	pipex/builtins/export.o \
+	pipex/builtins/unset.o \
+	pipex/builtins/env.o \
+	pipex/builtins/assign.o \
 	pipex/utils/exec.o \
 	pipex/utils/get_arg.o \
 	pipex/utils/heredoc.o \

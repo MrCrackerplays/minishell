@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/18 16:16:27 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 17:38:05 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 19:15:05 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,12 @@ typedef struct s_pipex_data{
 // -~{ Buildins }~- //
 
 bool			pipex_echo(t_strlist *lst, t_pipex_data *data);
-bool			pipex_pwd(t_pipex_data *data);
 bool			pipex_cd(t_strlist *lst);
+bool			pipex_pwd(t_pipex_data *data);
+void			pipex_export(t_strlist *lst);
+bool			pipex_unset(t_strlist *lst);
+bool			pipex_env(t_pipex_data *data);
+bool			pipex_assign(t_strlist *lst);
 
 char			*get_arg(char *arg, char **envp);
 bool			get_arg2(t_string *arg);

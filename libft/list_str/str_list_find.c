@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   list_find.c                                        :+:    :+:            */
+/*   str_list_find.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 10:54:27 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/11/20 19:38:17 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 18:40:20 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,27 @@ t_strlist	*ft_strlst_last(t_strlist *lst)
 	return (lst);
 }
 
-t_strlist	*ft_strlst_find(t_strlist *lst, t_string *text)
+t_strlist	*ft_strlst_find(t_strlist *lst, char *text)
 {
 	if (!lst)
 		return (NULL);
 	while (lst)
 	{
-		if (lst->str == text)
+		if (ft_strncmp(lst->str->text, text, lst->str->len + 1) == 0)
 			return (lst);
 		lst = lst->next;
 	}
 	return (NULL);
 }
 
-int	ft_strlst_find_indx(t_strlist *lst, t_string *text)
+int	ft_strlst_find_indx(t_strlist *lst, char *text)
 {
 	int	i;
 
 	i = 0;
 	while (lst)
 	{
-		if (lst->str == text)
+		if (ft_strncmp(lst->str->text, text, lst->str->len + 1) == 0)
 			return (i);
 		lst = lst->next;
 		i++;

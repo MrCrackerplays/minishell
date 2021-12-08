@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/23 15:40:35 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 17:36:23 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 19:36:55 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,6 @@ void	pipex(t_strlist *lst)
 	}
 	if (data->std_out)
 		pipex_stdout(data->p_switch);
+	ft_strlst_free(data->com);
+	free(data);
 }

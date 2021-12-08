@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 13:45:13 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 17:36:42 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 19:14:43 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static bool	buildins_in(t_pipex_data *data)
 		pipex_echo(data->com->next, data);
 	else if (ft_strncmp(data->com->str->text, "pwd", 4) == 0)
 		pipex_pwd(data);
+	else if (ft_strncmp(data->com->str->text, "env", 4) == 0)
+		pipex_env(data);
 	else
 		return (false);
 	return (true);
@@ -27,6 +29,10 @@ static bool	buildins(t_pipex_data *data)
 {
 	if (ft_strncmp(data->com->str->text, "cd", 3) == 0)
 		pipex_cd(data->com->next);
+	else if (ft_strncmp(data->com->str->text, "unset", 6) == 0)
+		pipex_unset(data->com->next);
+	else if (ft_strncmp(data->com->str->text, "export", 7) == 0)
+		pipex_export(data->com->next);
 	else
 		return (false);
 	return (true);
