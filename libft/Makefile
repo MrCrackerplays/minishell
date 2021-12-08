@@ -6,7 +6,7 @@
 #    By: rdrazsky <rdrazsky@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/04 13:52:48 by rdrazsky      #+#    #+#                  #
-#    Updated: 2021/12/03 19:39:36 by rdrazsky      ########   odam.nl          #
+#    Updated: 2021/12/05 14:17:12 by pdruart       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,6 @@ LIBFT_FILES = \
 LIBFT_NEW_FILES = \
 	ft_strcat \
 	ft_latoi \
-	ft_freear \
 	ft_exit_error
 PRINTF_FILES = \
 	ft_printf \
