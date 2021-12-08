@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/08 14:50:15 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/08 15:18:45 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	read_and_execute(char **envp)
 		if (!str || ft_strncmp(str, "exit", ft_strlen(str)) == 0)
 			break ;
 		lst = parse_line(str);
-		printf("parsed line\n");
+		//printf("parsed line\n");
 		pipex(lst, envp);
 		//ft_strlst_print(lst);
 		ft_strlst_free(lst);
