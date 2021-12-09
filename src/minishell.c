@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/09 17:04:36 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/09 18:40:36 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	read_and_execute(void)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_vats_init(envp);
+	t_vats_init(argv, envp);
 	read_and_execute();
 	if (argc && argv)
 		exit(0);

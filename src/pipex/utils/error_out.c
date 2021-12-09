@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   env.c                                              :+:    :+:            */
+/*   error_out.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/12/08 18:42:45 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 18:46:52 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/09 17:49:35 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/09 18:32:31 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex_internal.h>
 
-bool	pipex_env(t_pipex_data *data)
+void	write_error_num(int num)
 {
-	t_strlist	*tmp;
+	int		fd;
+	char	*tmp;
 
-	tmp = get_t_vars()->env;
-	while (tmp)
-	{
-		ft_putendl_fd(tmp->str->text, which_out(data));
-		tmp = tmp->next;
-	}
-	ft_putstr_fd("_=", which_out(data));
-	ft_putendl_fd(get_t_vars()->path, which_out(data));
-	return (true);
+	num /= 256;
+	fd = ft_tmp_open(TMP_ERROR, O_RDWR | O_CREAT | O_TRUNC);
+	ft_putnbr_fd(num, fd);
+	close(fd);
+	tmp = ft_tmp_read(TMP_ERROR);
+	ft_str_copy_to_s(get_t_vars()->last_out, tmp);
+	free(tmp);
 }

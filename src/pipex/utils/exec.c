@@ -6,11 +6,12 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/23 15:39:34 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 17:37:11 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 19:01:47 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex_internal.h>
+#include <errno.h>
 
 void	exec(int in, int out, char *arg, char **envp)
 {
@@ -58,12 +59,20 @@ void	exec3(t_strlist *lst)
 
 	is_env = get_arg2(lst->str);
 	if (access(lst->str->text, 0))
-		ft_exit_error("no such file or command");
-	else if (!is_env && ft_strncmp(lst->str->text, "./", 2) != 0)
-		ft_exit_error("no such command");
+	{
+		ft_putendl_fd("no such file or command", get_t_vars()->std_out);
+		exit(127);
+	}
+	else if (!is_env && lst->str->text[0] != '/'
+		&& ft_strncmp(lst->str->text, "./", 2) != 0
+		&& ft_strncmp(lst->str->text, "../", 3) != 0)
+	{
+		ft_putendl_fd("no such command", get_t_vars()->std_out);
+		exit(127);
+	}
 	arr = ft_strlst_to_arr(lst);
 	if (!arr)
 		ft_exit_error("malloc fail");
 	execve(lst->str->text, arr, ft_strlst_to_arr(get_t_vars()->env));
-	perror("execve fail");
+	exit(errno);
 }

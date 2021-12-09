@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/18 16:16:27 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 16:47:08 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 18:31:41 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define TMP_PIP1 "minishell_pipe1.tmp"
 # define TMP_PIP2 "minishell_pipe2.tmp"
 # define TMP_HERE "minishell_heredoc.tmp"
+# define TMP_ERROR "minishell_error.tmp"
 
 typedef struct s_pipex_data{
 	bool		use_tmp;
@@ -59,6 +60,8 @@ void			exec3(t_strlist *lst);
 
 void			run_basic(char **argv, char **envp);
 void			run_multible(char **argv, char **envp);
+
+void			write_error_num(int num);
 
 int				which_out(t_pipex_data *data);
 

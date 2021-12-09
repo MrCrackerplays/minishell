@@ -6,11 +6,12 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/23 15:40:35 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 16:56:28 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 18:29:07 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex_internal.h>
+#include <errno.h>
 
 static void	clear_tmp(void)
 {

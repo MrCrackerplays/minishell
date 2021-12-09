@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 13:45:13 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 16:55:16 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 18:47:42 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static	void	child_run(t_pipex_data *data)
 void	pipex_run_command(t_pipex_data *data)
 {
 	int			pid;
+	int			ret;
 	t_strlist	*tmp;
 
 	while (data->make)
@@ -78,5 +79,6 @@ void	pipex_run_command(t_pipex_data *data)
 		ft_exit_error("pid fail");
 	if (pid == 0)
 		child_run(data);
-	wait(0);
+	waitpid(pid, &ret, 0);
+	write_error_num(ret);
 }
