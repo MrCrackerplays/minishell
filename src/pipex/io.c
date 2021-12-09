@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 19:33:03 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:47:13 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 16:49:56 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	set_input(t_pipex_data *data, t_string *str)
 {
+	data->std_in = false;
 	data->in = str;
 	data->use_tmp = false;
 }

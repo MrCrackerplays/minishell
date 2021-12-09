@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 13:45:13 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 19:14:43 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 16:55:16 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ static	void	child_run(t_pipex_data *data)
 		data->p[1] = open(data->out->text, O_RDWR | O_CREAT | O_APPEND, 0777);
 	else if (data->out && !data->out_add)
 		data->p[1] = open(data->out->text, O_RDWR | O_CREAT | O_TRUNC, 0777);
-	if (dup2(data->p[0], 0) == -1 || dup2(data->p[1], 1) == -1)
+	if (!data->std_in && dup2(data->p[0], 0) == -1)
+		ft_exit_error("dup fail");
+	if (!data->std_out && dup2(data->p[1], 1) == -1)
 		ft_exit_error("dup fail");
 	if (buildins_in(data))
 		exit(0);

@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 17:29:03 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 19:41:49 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 16:49:49 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	pipex_heredoc(t_strlist *lst, t_pipex_data *data)
 	char		*tmp;
 	t_string	*file;
 
+	data->std_in = false;
 	if (data->in)
 		data->in = NULL;
 	data->use_tmp = true;
