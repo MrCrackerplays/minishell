@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 18:42:45 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 18:47:01 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 16:47:21 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	pipex_env(t_pipex_data *data)
 	tmp = get_t_vars()->env;
 	while (tmp)
 	{
-		ft_putendl_fd(tmp->str->text, data->p[1]);
+		ft_putendl_fd(tmp->str->text, which_out(data));
 		tmp = tmp->next;
 	}
 	return (true);

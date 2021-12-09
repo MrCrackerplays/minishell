@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 17:31:54 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:47:16 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 16:54:20 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ t_pipex_data	*pipex_data_new(void)
 	close(ft_tmp_open(TMP_PIP2, O_WRONLY | O_CREAT | O_TRUNC));
 	close(ft_tmp_open(TMP_HERE, O_WRONLY | O_CREAT | O_TRUNC));
 	data->com = NULL;
+	pipex_data_clear(data);
 	return (data);
 }
 
 void	pipex_data_clear(t_pipex_data *data)
 {
+	data->std_in = true;
 	data->std_out = true;
 	data->out_add = false;
 	data->out = NULL;
@@ -72,8 +74,7 @@ void	pipex_init_io(t_pipex_data *data, t_strlist *lst)
 			parse = parse->next->next;
 	}
 	if (data->make)
-	{
 		data->out = ft_str_copy(data->make->str);
+	if (data->make || (parse && ft_strncmp(parse->str->text, "|", 2) == 0))
 		data->std_out = false;
-	}
 }
