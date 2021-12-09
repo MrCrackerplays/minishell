@@ -35,17 +35,18 @@ $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -lreadline libft/libft.a -o $(NAME)
 
 obj/%.o: src/%.c $(HEADER_FILES) obj
-	#@mkdir -p obj
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 obj:
 	@mkdir obj $(SUB_OBJ_DIR)
 
 clean:
+	$(MAKE) clean -C libft
 	rm -f $(OBJECTS)
 	@rm -rf obj
 
 fclean: clean
+	$(MAKE) fclean -C libft
 	rm -f $(NAME)
 
 re: fclean all
