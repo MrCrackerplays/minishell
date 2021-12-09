@@ -6,34 +6,30 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:49:49 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/08 13:56:15 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/09 13:56:40 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <line_parser.h>
 #include <quote_handler.h>
 
-char	get_quote(char current_quote, char attempted_quote)
-{
-	if (current_quote == '\0')
-	{
-		if (attempted_quote == '\'')
-			return ('\'');
-		if (attempted_quote == '"')
-			return ('"');
-		return ('\0');
-	}
-	if (attempted_quote == current_quote)
-		return ('\0');
-	return (current_quote);
-}
-
 int	should_split(t_string *line, size_t *i, char *quoted)
 {
-	*quoted = get_quote(*quoted, line->text[*i]);
+	if (line->text[*i] == *quoted)
+		*quoted = '\0';
+	else if (*quoted == '\0')
+	{
+		if (line->text[*i] == '\'')
+			*quoted = '\'';
+		else if (line->text[*i] == '"')
+			*quoted = '"';
+		else
+			*quoted = '\0';
+	}
 	if (*quoted)
 		return (0);
-	if (line->text[*i] == ' ')
+	if (line->text[*i] == ' ' || line->text[*i] == '|'
+		|| line->text[*i] == '<' || line->text[*i] == '>')
 		return (1);
 	return (0);
 }
@@ -54,6 +50,44 @@ int	add_to_lst(t_strlist **lst, t_string *cut)
 	return (0);
 }
 
+int	pipe_parse(char *c, t_strlist **lst, size_t *i)
+{
+	char	*additive;
+
+	additive = "|";
+	if (*c == '<')
+		additive = "<";
+	else if (*c == '<' && c[1] == '<')
+		additive = "<<";
+	else if (*c == '>')
+		additive = ">";
+	else if (*c == '>' && c[1] == '>')
+		additive = ">>";
+	if ((*c == '>' || *c == '<') && c[0] == c[1])
+		(*i)++;
+	if (*c == '|' || *c == '<' || *c == '>')
+		(*i)++;
+	if ((*c == '|' || *c == '<' || *c == '>')
+		&& add_to_lst(lst, ft_str_new(additive)) != 0)
+		return (-1);
+	return (0);
+}
+
+int	apply_parse(t_strlist **lst, t_string *str_line, size_t offset, size_t i)
+{
+	int	result;
+
+	result = add_to_lst(lst, quote_handling_free(
+				ft_str_cut(str_line, offset, i - offset))) != 0
+		|| pipe_parse(str_line->text + i, &lst, &i) != 0;
+	if (result)
+	{
+		ft_str_free(str_line);
+		ft_strlst_free(lst);
+	}
+	return (result);
+}
+
 t_strlist	*parse_line(char *line)
 {
 	t_strlist	*lst;
@@ -72,20 +106,11 @@ t_strlist	*parse_line(char *line)
 	while (line[i] != '\0')
 	{
 		while (line[i] != '\0' && !should_split(str_line, &i, &quote))
-		{
-			//todo: add redirects and pipes (<< >> < > |) also stopping the splitting but then also getting added afterwards
 			i++;
-		}
-		if (i != offset && add_to_lst(&lst, quote_handling_free(ft_str_cut(
-						str_line, offset, i - offset))) != 0)
-		{
-			ft_str_free(str_line);
-			ft_strlst_free(lst);
+		if (i != offset && apply_parse(&lst, str_line, offset, i))
 			return (NULL);
-		}
-		while (line[i + 1] == ' ')
+		while (line[i] == ' ')
 			i++;
-		i++;
 		offset = i;
 	}
 	ft_str_free(str_line);
