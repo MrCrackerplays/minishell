@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 17:23:17 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 13:34:09 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 18:46:17 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,43 @@ t_vars	*get_t_vars(void)
 	return (&vars);
 }
 
-void	t_vats_init(char **envp)
+static void	increase_shell_lvl(void)
+{
+	int			lvl;
+	char		*tmp;
+	t_string	*str;
+	t_strlist	*lst;
+
+	lvl = ft_atoi(getenv("SHLVL")) + 1;
+	tmp = ft_itoa(lvl);
+	if (tmp)
+	{
+		str = ft_str_new("SHLVL=");
+		ft_str_cat_s(str, tmp);
+		free(tmp);
+	}
+	else
+		str = ft_str_new("SHLVL=1");
+	lst = ft_strlst_new(str);
+	pipex_export(lst);
+	ft_strlst_free(lst);
+}
+
+static void	set_path(char **argv)
+{
+	char		*tmp;
+	t_string	*str;
+
+	tmp = getcwd(NULL, 0);
+	str = ft_str_new(tmp);
+	free(tmp);
+	str->text[str->len] = '/';
+	str->len++;
+	ft_str_cat_s(str, argv[0]);
+	get_t_vars()->path = ft_str_strip(str);
+}
+
+void	t_vats_init(char **argv, char **envp)
 {
 	t_vars		*vars;
 	t_string	*tmps;
@@ -40,6 +76,10 @@ void	t_vats_init(char **envp)
 	}
 	vars->vars = NULL;
 	vars->last_out = ft_str_new("0");
+	vars->std_out = dup(1);
+	increase_shell_lvl();
+	write_error_num(0);
+	set_path(argv);
 }
 
 char	*get_env_var(char *name)
@@ -53,7 +93,8 @@ char	*get_env_var(char *name)
 	while (lst)
 	{
 		tmp = ft_strchr(lst->str->text, '=');
-		if (ft_strncmp(lst->str->text, name, tmp - lst->str->text) == 0)
+		if (ft_strncmp(lst->str->text, name,
+				ft_max(tmp - lst->str->text, ft_strlen(name))) == 0)
 			return (tmp + 1);
 		lst = lst->next;
 	}

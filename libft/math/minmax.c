@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   env.c                                              :+:    :+:            */
+/*   minmax.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/12/08 18:42:45 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 18:46:52 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/09 17:42:48 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/09 17:43:49 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pipex_internal.h>
+#include "../libft.h"
 
-bool	pipex_env(t_pipex_data *data)
+int	ft_max(int n1, int n2)
 {
-	t_strlist	*tmp;
+	if (n1 > n2)
+		return (n1);
+	return (n2);
+}
 
-	tmp = get_t_vars()->env;
-	while (tmp)
-	{
-		ft_putendl_fd(tmp->str->text, which_out(data));
-		tmp = tmp->next;
-	}
-	ft_putstr_fd("_=", which_out(data));
-	ft_putendl_fd(get_t_vars()->path, which_out(data));
-	return (true);
+int	ft_min(int n1, int n2)
+{
+	if (n1 < n2)
+		return (n1);
+	return (n2);
 }

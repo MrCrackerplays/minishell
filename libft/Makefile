@@ -6,7 +6,7 @@
 #    By: rdrazsky <rdrazsky@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/04 13:52:48 by rdrazsky      #+#    #+#                  #
-#    Updated: 2021/12/07 15:30:50 by rdrazsky      ########   odam.nl          #
+#    Updated: 2021/12/09 17:44:03 by rdrazsky      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,8 @@ TREE_FILES = \
 	key_hash \
 	dictionary
 MATH_FILES = \
-	abs
+	abs \
+	minmax
 FREE_FILES = \
 	free
 STRING_FILES = \
