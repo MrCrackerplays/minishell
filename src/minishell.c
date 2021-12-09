@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/08 19:40:10 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/09 17:04:36 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	read_and_execute(void)
 			break ;
 		lst = parse_line(str);
 		//printf("parsed line\n");
+		// ft_strlst_print(lst);
 		pipex(lst);
-		//ft_strlst_print(lst);
 		ft_strlst_free(lst);
 		free(str);
 	}
