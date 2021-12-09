@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:49:49 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/09 13:56:40 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/09 16:57:59 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ int	pipe_parse(char *c, t_strlist **lst, size_t *i)
 	char	*additive;
 
 	additive = "|";
-	if (*c == '<')
-		additive = "<";
-	else if (*c == '<' && c[1] == '<')
+	if (*c == '<' && c[1] == '<')
 		additive = "<<";
-	else if (*c == '>')
-		additive = ">";
+	else if (*c == '<')
+		additive = "<";
 	else if (*c == '>' && c[1] == '>')
 		additive = ">>";
+	else if (*c == '>')
+		additive = ">";
 	if ((*c == '>' || *c == '<') && c[0] == c[1])
 		(*i)++;
 	if (*c == '|' || *c == '<' || *c == '>')
@@ -73,17 +73,22 @@ int	pipe_parse(char *c, t_strlist **lst, size_t *i)
 	return (0);
 }
 
-int	apply_parse(t_strlist **lst, t_string *str_line, size_t offset, size_t i)
+int	apply_parse(t_strlist **lst, t_string *str_line, size_t offset, size_t *i)
 {
 	int	result;
 
-	result = add_to_lst(lst, quote_handling_free(
-				ft_str_cut(str_line, offset, i - offset))) != 0
-		|| pipe_parse(str_line->text + i, &lst, &i) != 0;
+	result = 0;
+	if (*i - offset > 0)
+		result = add_to_lst(lst, quote_handling_free(
+					ft_str_cut(str_line, offset, *i - offset))) != 0;
+	if (!result)
+		while(str_line->text[*i] == ' ')
+			(*i)++;
+	result = result || pipe_parse(str_line->text + *i, lst, i) != 0;
 	if (result)
 	{
 		ft_str_free(str_line);
-		ft_strlst_free(lst);
+		ft_strlst_free(*lst);
 	}
 	return (result);
 }
@@ -107,7 +112,7 @@ t_strlist	*parse_line(char *line)
 	{
 		while (line[i] != '\0' && !should_split(str_line, &i, &quote))
 			i++;
-		if (i != offset && apply_parse(&lst, str_line, offset, i))
+		if (apply_parse(&lst, str_line, offset, &i))
 			return (NULL);
 		while (line[i] == ' ')
 			i++;
