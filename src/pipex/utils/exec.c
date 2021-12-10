@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/23 15:39:34 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/10 13:43:54 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 14:46:12 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	exec3(t_strlist *lst)
 	{
 		ft_putstr_fd("minishell: ", get_t_vars()->std_out);
 		ft_putstr_fd(lst->str->text, get_t_vars()->std_out);
-		ft_putstr_fd(": Command not found\n", get_t_vars()->std_out);
+		ft_putstr_fd(": command not found\n", get_t_vars()->std_out);
 		exit(127);
 	}
 	else if (access(lst->str->text, 0))

@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 17:23:17 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/10 13:44:24 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 14:40:57 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,19 @@ static void	increase_shell_lvl(void)
 	t_string	*str;
 	t_strlist	*lst;
 
-	lvl = ft_atoi(getenv("SHLVL")) + 1;
-	tmp = ft_itoa(lvl);
+	tmp = getenv("SHLVL");
 	if (tmp)
 	{
-		str = ft_str_new("SHLVL=");
-		ft_str_cat_s(str, tmp);
-		free(tmp);
+		lvl = ft_atoi(tmp) + 1;
+		tmp = ft_itoa(lvl);
+		if (tmp)
+		{
+			str = ft_str_new("SHLVL=");
+			ft_str_cat_s(str, tmp);
+			free(tmp);
+		}
+		else
+			str = ft_str_new("SHLVL=1");
 	}
 	else
 		str = ft_str_new("SHLVL=1");
