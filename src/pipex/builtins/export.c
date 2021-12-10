@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 19:07:27 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 13:31:11 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 14:46:43 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ static void	remove_from_env(t_string *str)
 	}
 }
 
+static void	print_error_msg(char *error)
+{
+	if (ft_strchr(error, '='))
+	{
+		ft_putstr_fd("minishell: export: '", 1);
+		ft_putstr_fd(error, 1);
+		ft_putstr_fd("': not a valid identifier\n", 1);
+	}
+}
+
 void	pipex_export(t_strlist *lst)
 {
 	int			len;
@@ -60,5 +70,7 @@ void	pipex_export(t_strlist *lst)
 		ft_strlst_add_back(&get_t_vars()->env,
 			ft_strlst_new(ft_str_copy(lst->str)));
 	}
+	else
+		print_error_msg(lst->str->text);
 	pipex_export(lst->next);
 }
