@@ -6,12 +6,13 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:49:49 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/09 16:57:59 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/10 13:55:18 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <line_parser.h>
 #include <quote_handler.h>
+#include <variable_expansion.h>
 
 int	should_split(t_string *line, size_t *i, char *quoted)
 {
@@ -82,7 +83,7 @@ int	apply_parse(t_strlist **lst, t_string *str_line, size_t offset, size_t *i)
 		result = add_to_lst(lst, quote_handling_free(
 					ft_str_cut(str_line, offset, *i - offset))) != 0;
 	if (!result)
-		while(str_line->text[*i] == ' ')
+		while (str_line->text[*i] == ' ')
 			(*i)++;
 	result = result || pipe_parse(str_line->text + *i, lst, i) != 0;
 	if (result)
@@ -105,16 +106,16 @@ t_strlist	*parse_line(char *line)
 	offset = 0;
 	quote = '\0';
 	lst = NULL;
-	str_line = ft_str_new(line);
+	str_line = expand_variables(line);
 	if (str_line == NULL)
 		return (NULL);
-	while (line[i] != '\0')
+	while (str_line->text[i] != '\0')
 	{
-		while (line[i] != '\0' && !should_split(str_line, &i, &quote))
+		while (str_line->text[i] != '\0' && !should_split(str_line, &i, &quote))
 			i++;
 		if (apply_parse(&lst, str_line, offset, &i))
 			return (NULL);
-		while (line[i] == ' ')
+		while (str_line->text[i] == ' ')
 			i++;
 		offset = i;
 	}
