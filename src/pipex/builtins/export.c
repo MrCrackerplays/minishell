@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 19:07:27 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/10 14:46:43 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 19:51:39 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static void	remove_from_env(t_string *str)
 	}
 }
 
-static void	print_error_msg(char *error)
+static void	print_error_msg(int len, char *error)
 {
-	if (ft_strchr(error, '='))
+	if (len == -1)
 	{
 		ft_putstr_fd("minishell: export: '", 1);
 		ft_putstr_fd(error, 1);
@@ -53,10 +53,9 @@ void	pipex_export(t_strlist *lst)
 	if (!lst)
 		return ;
 	len = 0;
-	while (lst->str->text[len] != '=')
+	while (lst->str->text[len] != '=' && lst->str->text[len] != '\0')
 	{
-		if (!ft_isalpha(lst->str->text[len])
-			&& !ft_isdigit(lst->str->text[len])
+		if (!ft_isalpha(lst->str->text[len]) && !ft_isdigit(lst->str->text[len])
 			&& lst->str->text[len] != '_')
 		{
 			len = -1;
@@ -64,13 +63,14 @@ void	pipex_export(t_strlist *lst)
 		}
 		len++;
 	}
-	if (len != -1 && ft_strchr(lst->str->text, '='))
+	if (ft_isdigit(lst->str->text[0]))
+		len = -1;
+	if (len > 0 && ft_strchr(lst->str->text, '='))
 	{
 		remove_from_env(lst->str);
 		ft_strlst_add_back(&get_t_vars()->env,
 			ft_strlst_new(ft_str_copy(lst->str)));
 	}
-	else
-		print_error_msg(lst->str->text);
+	print_error_msg(len, lst->str->text);
 	pipex_export(lst->next);
 }

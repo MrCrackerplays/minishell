@@ -24,7 +24,7 @@ OBJECTS := minishell.o line_parser.o quote_handler.o variable_expansion.o\
 	pipex/utils/which_out.o \
 	pipex/utils/error_out.o
 OBJECTS := $(addprefix obj/,$(OBJECTS))
-INCLUDE := headers libft
+INCLUDE := $(HOME)/.brew/opt/readline/include headers libft
 INCLUDE := $(addprefix -I,$(INCLUDE))
 HEADER_FILES := line_parser.h quote_handler.h pipex.h variable_expansion.h
 HEADER_FILES := $(addprefix headers/,$(HEADER_FILES))
@@ -33,7 +33,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	$(MAKE) -C libft
-	$(CC) $(CFLAGS) $(OBJECTS) -lreadline libft/libft.a -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJECTS) -lreadline -L $(HOME)/.brew/opt/readline/lib libft/libft.a -o $(NAME)
 
 obj/%.o: src/%.c $(HEADER_FILES)
 	@mkdir -p obj $(SUB_OBJ_DIR)

@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:49:49 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/10 13:55:18 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/10 20:17:20 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int	apply_parse(t_strlist **lst, t_string *str_line, size_t offset, size_t *i)
 	if (!result)
 		while (str_line->text[*i] == ' ')
 			(*i)++;
-	result = result || pipe_parse(str_line->text + *i, lst, i) != 0;
+	if (!result)
+		result = pipe_parse(str_line->text + *i, lst, i);
 	if (result)
 	{
 		ft_str_free(str_line);

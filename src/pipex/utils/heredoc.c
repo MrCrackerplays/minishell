@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 17:29:03 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 16:49:49 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 19:54:19 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	pipex_heredoc(t_strlist *lst, t_pipex_data *data)
 	file = ft_str_new("");
 	ft_putstr_fd(">", 1);
 	tmp = ft_get_next_line(0);
-	while (ft_strncmp(tmp, lst->str->text, lst->str->len) != 0)
+	lst->str->text[lst->str->len] = '\n';
+	while (ft_strncmp(tmp, lst->str->text, lst->str->len + 1) != 0)
 	{
 		ft_str_cat_s(file, tmp);
 		ft_putstr_fd(">", 1);
