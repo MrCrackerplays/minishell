@@ -6,12 +6,11 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/09 18:40:36 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:56:07 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <libft.h>
@@ -31,7 +30,6 @@ void	read_and_execute(void)
 		if (!str || ft_strncmp(str, "exit", ft_strlen(str)) == 0)
 			break ;
 		lst = parse_line(str);
-		//printf("parsed line\n");
 		// ft_strlst_print(lst);
 		pipex(lst);
 		ft_strlst_free(lst);

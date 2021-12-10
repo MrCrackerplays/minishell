@@ -5,7 +5,7 @@ ifdef DEBUG
 CFLAGS := -g $(CFLAGS)
 endif
 SUB_OBJ_DIR := obj/pipex obj/pipex/builtins obj/pipex/utils
-OBJECTS := minishell.o line_parser.o quote_handler.o \
+OBJECTS := minishell.o line_parser.o quote_handler.o variable_expansion.o\
 	pipex/init.o \
 	pipex/io.o \
 	pipex/pipex.o \
@@ -27,7 +27,7 @@ OBJECTS := minishell.o line_parser.o quote_handler.o \
 OBJECTS := $(addprefix obj/,$(OBJECTS))
 INCLUDE := headers libft
 INCLUDE := $(addprefix -I,$(INCLUDE))
-HEADER_FILES := line_parser.h quote_handler.h pipex.h
+HEADER_FILES := line_parser.h quote_handler.h pipex.h variable_expansion.h
 HEADER_FILES := $(addprefix headers/,$(HEADER_FILES))
 
 all: $(NAME)
