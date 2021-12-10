@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/20 19:08:04 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 19:31:11 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:41:12 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ void	ft_str_cat(t_string *des, t_string *src)
 
 	if (!des || !src)
 		return ;
-	tmp = malloc(sizeof(char) * (des->len + src->len + 1));
-	if (!tmp)
-		return ;
+	tmp = ft_malloc_e(sizeof(char) * (des->len + src->len + 1), "libft");
 	ft_str_write_d(tmp, des->text, des->len);
 	ft_str_write_d(tmp + des->len, src->text, src->len);
 	free(des->text);

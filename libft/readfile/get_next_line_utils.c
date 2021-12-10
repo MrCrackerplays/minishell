@@ -6,11 +6,12 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/19 16:04:55 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/11/12 20:18:34 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:53:39 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "../libft.h"
 
 char	*m_strdup_plus(char	*s, int size)
 {
@@ -19,16 +20,12 @@ char	*m_strdup_plus(char	*s, int size)
 
 	if (!s)
 	{
-		d = malloc(2 * sizeof(char));
-		if (!d)
-			return (NULL);
+		d = ft_malloc_e(2 * sizeof(char), "libft");
 		d[0] = '\0';
 		d[1] = '\0';
 		return (d);
 	}
-	d = malloc((size) * sizeof(char));
-	if (!d)
-		return (NULL);
+	d = ft_malloc_e((size) * sizeof(char), "libft");
 	i = 0;
 	while (s[i])
 	{

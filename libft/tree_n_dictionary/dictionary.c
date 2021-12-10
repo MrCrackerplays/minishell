@@ -16,9 +16,7 @@ t_dict	*ft_dict_new(char *key, void *value)
 {
 	t_dict	*dict;
 
-	dict = malloc(sizeof(t_dict));
-	if (!dict)
-		return (NULL);
+	dict = ft_malloc_e(sizeof(t_dict), "libft");
 	dict->tree = ft_tree_new(ft_dict_hash(key), value);
 	return (dict);
 }

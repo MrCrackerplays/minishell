@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 12:26:28 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 15:53:36 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:28:31 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	**ft_strlst_to_arr(t_strlist *lst)
 	t_strlist	*lst_p;
 
 	arr = ft_calloc(ft_strlst_size(lst) + 1, sizeof(char *));
+	if (!arr)
+		perror("libft");
 	i = 0;
 	lst_p = lst;
 	while (lst_p && lst_p->str)

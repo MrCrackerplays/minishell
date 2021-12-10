@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/21 17:44:42 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/05 13:24:06 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:36:34 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ char	**ft_strarr_copy(char **arr)
 	char	**new_arr;
 	int		i;
 
-	new_arr = malloc(sizeof(char *) * (ft_strarr_len(arr) + 1));
-	if (!new_arr)
-		return (NULL);
+	new_arr = ft_malloc_e(sizeof(char *) * (ft_strarr_len(arr) + 1), "libft");
 	i = 0;
 	while (arr[i])
 	{

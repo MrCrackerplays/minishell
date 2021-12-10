@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/16 17:30:50 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/07 15:30:35 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:36:09 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <stdio.h>
 
 # ifndef BOOL
 #  define BOOL int
@@ -89,7 +90,12 @@ int			ft_printf(const char *s, ...);
 
 long		ft_latoi(const char *nptr);
 char		*ft_strcat(char *d, char *s);
+
 void		ft_exit_error(char *error);
+void		ft_exit_error_n(char *error, int error_no);
+
+void		*ft_malloc(size_t size);
+void		*ft_malloc_e(size_t size, char *error);
 
 // -~{ LIBFT }~- //
 

@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 10:52:46 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/11/21 16:23:13 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:39:42 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ t_strlist	*ft_strlst_new(t_string *text)
 {
 	t_strlist	*lst;
 
-	lst = (t_strlist *) malloc(sizeof(t_strlist));
-	if (!lst)
-		return (NULL);
+	lst = (t_strlist *) ft_malloc_e(sizeof(t_strlist), "libft");
 	lst->str = text;
 	lst->next = NULL;
 	return (lst);

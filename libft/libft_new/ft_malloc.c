@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_exit_error.c                                    :+:    :+:            */
+/*   ft_malloc.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/12/03 18:07:58 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/10 13:27:49 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/10 13:33:14 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/10 13:35:41 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	ft_exit_error(char *error)
+void	*ft_malloc(size_t size)
 {
-	ft_putendl_fd("Error", 2);
-	ft_putendl_fd(error, 2);
-	exit(1);
+	void	*item;
+
+	item = malloc(size);
+	if (!item)
+		perror(NULL);
+	return (item);
 }
 
-void	ft_exit_error_n(char *error, int error_no)
+void	*ft_malloc_e(size_t size, char *error)
 {
-	ft_putendl_fd("Error", 2);
-	ft_putendl_fd(error, 2);
-	exit(error_no);
+	void	*item;
+
+	item = malloc(size);
+	if (!item)
+		perror(error);
+	return (item);
 }

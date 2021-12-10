@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/03 18:15:10 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/03 19:37:55 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:41:22 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_str_insert(t_string *d, t_string *s, size_t index)
 		ft_str_cat(d, s);
 		return ;
 	}
-	tmp = malloc(sizeof(char) * (d->len + s->len + 1));
+	tmp = ft_malloc_e(sizeof(char) * (d->len + s->len + 1), "libft");
 	ft_str_write_d(tmp, d->text, index);
 	ft_str_write_d(tmp + index, s->text, s->len);
 	ft_str_write_d(tmp + index + s->len,

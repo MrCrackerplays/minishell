@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 10:52:46 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/11/20 17:00:04 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:39:16 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ t_list	*ft_lst_new(void *content)
 {
 	struct s_list	*list;
 
-	list = (t_list *) malloc(sizeof(t_list));
-	if (!list)
-		return (NULL);
+	list = (t_list *) ft_malloc_e(sizeof(t_list), "libft");
 	list->content = content;
 	list->next = NULL;
 	return (list);
