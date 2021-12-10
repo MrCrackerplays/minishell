@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/18 16:16:27 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/10 14:24:50 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 15:25:39 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void			exec3(t_strlist *lst);
 
 void			run_basic(char **argv, char **envp);
 void			run_multible(char **argv, char **envp);
-
-void			write_error_num(int num);
 
 int				which_out(t_pipex_data *data);
 

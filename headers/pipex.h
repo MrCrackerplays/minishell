@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 14:45:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 18:40:56 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 15:25:35 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_vars{
 t_vars	*get_t_vars(void);
 void	t_vats_init(char **argv, char **envp);
 char	*get_env_var(char *name);
+
+void	write_error_num(int num);
 
 void	pipex(t_strlist *lst);
 
