@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/05 17:18:06 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/11/05 15:12:52 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:38:17 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*get_word(char *s, int n)
 	char	*string;
 	int		i;
 
-	string = (char *) malloc(sizeof(char) * (n + 2));
+	string = (char *) ft_malloc_e(sizeof(char) * (n + 2), "libft");
 	ft_bzero(string, sizeof(char) * (n + 2));
 	i = 0;
 	while (i < n)
@@ -96,9 +96,7 @@ char	**ft_split(char const *s, char c)
 	len = sizeof(char *) * (arrlen(s, c) + 2);
 	if (len == 0)
 		return (NULL);
-	arr = (char **) malloc(len);
-	if (!arr)
-		return (NULL);
+	arr = (char **) ft_malloc_e(len, "libft");
 	get_arr(arr, s, c);
 	return (arr);
 }

@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 11:00:40 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/11/05 15:12:52 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:37:39 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ char	*ft_itoa(int n)
 		len++;
 		n /= 10;
 	}
-	string = (char *) malloc(sizeof(char) * len);
-	if (!string)
-		return (NULL);
+	string = (char *) ft_malloc_e(sizeof(char) * len, "libft");
 	ft_bzero(string, sizeof(char) * len);
 	putnbr_itoa(string, og_n);
 	return (string);

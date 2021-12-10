@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 17:31:54 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 18:28:43 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:42:41 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_pipex_data	*pipex_data_new(void)
 {
 	t_pipex_data	*data;
 
-	data = malloc(sizeof(t_pipex_data));
+	data = ft_malloc_e(sizeof(t_pipex_data), "minishell");
 	data->p[0] = -1;
 	data->p[1] = -1;
 	data->p_switch = true;

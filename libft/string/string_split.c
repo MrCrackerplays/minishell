@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/20 16:53:41 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/03 18:54:03 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:30:31 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ static t_strlist	*add_to_list(t_strlist *lst, int i, char *b)
 	t_strlist	*tmp;
 
 	tmp = ft_strlst_new(ft_str_new_l(b, i));
-	if (!tmp)
-	{
-		ft_strlst_free(lst);
-		return (NULL);
-	}
 	ft_strlst_add_back(&lst, tmp);
 	return (lst);
 }

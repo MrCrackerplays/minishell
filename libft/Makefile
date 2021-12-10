@@ -6,7 +6,7 @@
 #    By: rdrazsky <rdrazsky@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/04 13:52:48 by rdrazsky      #+#    #+#                  #
-#    Updated: 2021/12/09 17:44:03 by rdrazsky      ########   odam.nl          #
+#    Updated: 2021/12/10 13:44:44 by rdrazsky      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ LIBFT_FILES = \
 LIBFT_NEW_FILES = \
 	ft_strcat \
 	ft_latoi \
-	ft_exit_error
+	ft_exit_error \
+	ft_malloc
 PRINTF_FILES = \
 	ft_printf \
 	ft_print \

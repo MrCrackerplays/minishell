@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/01 15:46:12 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/11/20 19:15:27 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:39:32 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ t_intlist	*ft_intlst_new(int value)
 {
 	struct s_intlist	*list;
 
-	list = (t_intlist *) malloc(sizeof(t_intlist));
-	if (!list)
-		return (NULL);
+	list = (t_intlist *) ft_malloc_e(sizeof(t_intlist), "libft");
 	list->value = value;
 	list->next = NULL;
 	return (list);
@@ -33,8 +31,6 @@ t_intlist	*ft_intlst_copy(t_intlist *og_lst)
 	if (!og_lst)
 		return (NULL);
 	lst = ft_intlst_new(og_lst->value);
-	if (!lst)
-		return (NULL);
 	lst_indx = lst;
 	og_lst = og_lst->next;
 	while (og_lst)

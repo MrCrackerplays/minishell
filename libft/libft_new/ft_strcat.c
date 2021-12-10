@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 11:28:05 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/05 13:26:49 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:39:04 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ char	*ft_strcat(char *d, char *s)
 
 	if (!d || !s)
 		return (NULL);
-	string = malloc(sizeof(char) * (ft_strlen(d) + ft_strlen(s) + 1));
-	if (!string)
-		return (NULL);
+	string = ft_malloc_e(sizeof(char) * (ft_strlen(d) + ft_strlen(s) + 1), "libft");
 	string_parse = string;
 	while (*d)
 	{

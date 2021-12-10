@@ -16,9 +16,7 @@ t_tree	*ft_tree_new(int key, void *value)
 {
 	t_tree	*tree;
 
-	tree = malloc(sizeof(t_tree));
-	if (!tree)
-		return (NULL);
+	tree = ft_malloc_e(sizeof(t_tree), "libft");
 	tree->key = key;
 	tree->value = value;
 	tree->bigger = NULL;

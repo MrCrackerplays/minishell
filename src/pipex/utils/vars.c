@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 17:23:17 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 18:46:17 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 13:44:24 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ static void	increase_shell_lvl(void)
 	ft_strlst_free(lst);
 }
 
-static void	set_path(char **argv)
-{
-	char		*tmp;
-	t_string	*str;
+// static void	set_path(char **argv)
+// {
+// 	char		*tmp;
+// 	t_string	*str;
 
-	tmp = getcwd(NULL, 0);
-	str = ft_str_new(tmp);
-	free(tmp);
-	str->text[str->len] = '/';
-	str->len++;
-	ft_str_cat_s(str, argv[0]);
-	get_t_vars()->path = ft_str_strip(str);
-}
+// 	tmp = getcwd(NULL, 0);
+// 	str = ft_str_new(tmp);
+// 	free(tmp);
+// 	str->text[str->len] = '/';
+// 	str->len++;
+// 	ft_str_cat_s(str, argv[0]);
+// 	get_t_vars()->path = ft_str_strip(str);
+// }
 
 void	t_vats_init(char **argv, char **envp)
 {
@@ -63,7 +63,7 @@ void	t_vats_init(char **argv, char **envp)
 
 	vars = get_t_vars();
 	vars->env = NULL;
-	while (*envp)
+	while (*envp && argv)
 	{
 		tmps = ft_str_new(*envp);
 		if (!tmps)
@@ -79,7 +79,6 @@ void	t_vats_init(char **argv, char **envp)
 	vars->std_out = dup(1);
 	increase_shell_lvl();
 	write_error_num(0);
-	set_path(argv);
 }
 
 char	*get_env_var(char *name)
