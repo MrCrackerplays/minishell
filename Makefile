@@ -36,11 +36,9 @@ $(NAME): $(OBJECTS)
 	$(MAKE) -C libft
 	$(CC) $(CFLAGS) $(OBJECTS) -lreadline libft/libft.a -o $(NAME)
 
-obj/%.o: src/%.c $(HEADER_FILES) obj
+obj/%.o: src/%.c $(HEADER_FILES)
+	@mkdir -p obj $(SUB_OBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-
-obj:
-	@mkdir obj $(SUB_OBJ_DIR)
 
 clean:
 	$(MAKE) clean -C libft

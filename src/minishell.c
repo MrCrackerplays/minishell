@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/10 13:56:07 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/10 14:20:03 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@ void	read_and_execute(void)
 
 	while (1)
 	{
-		str = readline(">");
+		str = readline("minishell> ");
 		add_history(str);
-		if (!str || ft_strncmp(str, "exit", ft_strlen(str)) == 0)
-			break ;
+		if (ft_strncmp(str, "exit", 5) == 0)
+		{
+			ft_putendl_fd("exit", 1);
+			exit(0);
+		}
 		lst = parse_line(str);
 		// ft_strlst_print(lst);
 		pipex(lst);
