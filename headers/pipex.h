@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 14:45:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 18:40:56 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 19:16:39 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_vars{
 	t_string	*last_out;
 	int			std_out;
 	char		*path;
+	bool		in_readline;
 }	t_vars;
 
 t_vars	*get_t_vars(void);
