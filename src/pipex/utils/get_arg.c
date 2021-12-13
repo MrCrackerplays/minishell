@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/21 16:52:17 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 14:47:23 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 19:34:21 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,12 @@ bool	get_arg2(t_string *arg)
 {
 	t_strlist	*lst_og;
 	t_strlist	*lst;
+	char		*tmp;
 
-	lst_og = ft_str_split(getenv("PATH"), ':');
+	tmp = get_env_var("PATH");
+	if (!tmp)
+		return (false);
+	lst_og = ft_str_split(tmp, ':');
 	if (!lst_og)
 		return (false);
 	lst = lst_og;

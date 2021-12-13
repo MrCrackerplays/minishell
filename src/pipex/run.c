@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 13:45:13 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 18:47:42 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 19:50:26 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static bool	buildins(t_pipex_data *data)
 		pipex_unset(data->com->next);
 	else if (ft_strncmp(data->com->str->text, "export", 7) == 0)
 		pipex_export(data->com->next);
+	else if (ft_strncmp(data->com->str->text, "exit", 5) == 0)
+	{
+		ft_putendl_fd("exit", 1);
+		exit(0);
+	}
 	else
 		return (false);
 	return (true);

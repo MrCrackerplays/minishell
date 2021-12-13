@@ -6,15 +6,17 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/10 15:27:13 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/13 11:44:47 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <stdlib.h>
 #include <libft.h>
 #include <line_parser.h>
+#include <errno.h>
 
 #include <pipex.h>
 
@@ -46,30 +48,45 @@ void	read_and_execute(void)
 
 	while (1)
 	{
+		get_t_vars()->in_readline = true;
 		str = readline("minishell> ");
-		add_history(str);
-		if (quotation_check(str))
-		{
-			ft_putendl_fd("minishell: invalid syntax", 1);
-			write_error_num(258 * 256);
-			free (str);
-			continue ;
-		}
-		if (ft_strncmp(str, "exit", 5) == 0)
+		if (!str)
 		{
 			ft_putendl_fd("exit", 1);
 			exit(0);
 		}
+		get_t_vars()->in_readline = false;
+		add_history(str);
 		lst = parse_line(str);
-		// ft_strlst_print(lst);
 		pipex(lst);
 		ft_strlst_free(lst);
 		free(str);
 	}
 }
 
+void	sig_handler(int signum)
+{
+	if (get_t_vars()->in_readline)
+	{
+		if (signum == SIGINT)
+		{
+			ft_putchar_fd('\n', 1);
+			rl_on_new_line();
+			rl_replace_line("", 0);
+			rl_redisplay();
+		}
+		else if (signum == SIGQUIT)
+		{
+			rl_on_new_line();
+			rl_redisplay();
+		}
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
+	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, sig_handler);
 	t_vats_init(argv, envp);
 	read_and_execute();
 	if (argc && argv)

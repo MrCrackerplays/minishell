@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 17:23:17 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/10 14:40:57 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/10 19:16:51 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	t_vats_init(char **argv, char **envp)
 	vars->std_out = dup(1);
 	increase_shell_lvl();
 	write_error_num(0);
+	vars->in_readline = false;
 }
 
 char	*get_env_var(char *name)
