@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 14:45:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/13 13:14:00 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/13 14:42:44 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct s_vars{
 	bool		in_readline;
 	bool		error_skip;
 }	t_vars;
+
+void	pipex_exit(void);
 
 t_vars	*get_t_vars(void);
 void	t_vats_init(char **argv, char **envp);
