@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 19:07:27 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/10 19:51:39 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/13 14:47:20 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	print_error_msg(int len, char *error)
 		ft_putstr_fd("minishell: export: '", 1);
 		ft_putstr_fd(error, 1);
 		ft_putstr_fd("': not a valid identifier\n", 1);
+		write_error_num(1);
 	}
 }
 

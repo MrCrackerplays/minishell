@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/13 14:08:33 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/13 14:47:37 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <libft.h>
 #include <line_parser.h>
-#include <errno.h>
+#include <termios.h>
 
 #include <pipex.h>
 
@@ -41,7 +41,7 @@ int	quotation_check(char *str)
 	if (quote != '\0')
 	{
 		ft_putendl_fd("minishell: invalid syntax", 1);
-		write_error_num(258 * 256);
+		write_error_num(258);
 		free (str);
 	}
 	return (quote != '\0');
@@ -57,14 +57,11 @@ void	read_and_execute(void)
 		get_t_vars()->in_readline = true;
 		str = readline("minishell> ");
 		if (!str)
-		{
-			ft_putendl_fd("exit", 1);
-			exit(0);
-		}
+			pipex_exit();
 		get_t_vars()->in_readline = false;
+		add_history(str);
 		if (quotation_check(str))
 			continue ;
-		add_history(str);
 		lst = parse_line(str);
 		pipex(lst);
 		ft_strlst_free(lst);
@@ -82,7 +79,7 @@ void	sig_handler(int signum)
 			rl_on_new_line();
 			rl_replace_line("", 0);
 			rl_redisplay();
-			write_error_num(1 * 256);
+			write_error_num(1);
 		}
 		else if (signum == SIGQUIT)
 		{
@@ -92,13 +89,19 @@ void	sig_handler(int signum)
 	}
 	else
 	{
-		write_error_num((128 + signum) * 256);
+		ft_putchar_fd('\n', 1);
+		write_error_num((128 + signum));
 		get_t_vars()->error_skip = true;
 	}
 }
 
 int	main(int argc, char **argv, char **envp)
 {
+	struct termios	attributes;
+
+	tcgetattr(STDIN_FILENO, &attributes);
+	attributes.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);
 	t_vats_init(argv, envp);

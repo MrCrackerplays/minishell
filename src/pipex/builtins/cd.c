@@ -6,18 +6,18 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:36:37 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/10 14:44:29 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/13 14:56:30 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex_internal.h>
 
-bool	pipex_cd(t_strlist *lst)
+void	pipex_cd(t_strlist *lst)
 {
 	int	error;
 
 	if (!lst)
-		return (true);
+		return ;
 	if (ft_strncmp(lst->str->text, "~", 2) == 0)
 		error = chdir(getenv("HOME"));
 	else
@@ -29,5 +29,4 @@ bool	pipex_cd(t_strlist *lst)
 		ft_putendl_fd(": No such file or directory", 1);
 		write_error_num(1);
 	}
-	return (true);
 }
