@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/10 20:35:16 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/13 11:44:47 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,27 @@
 #include <errno.h>
 
 #include <pipex.h>
+
+int	quotation_check(char *str)
+{
+	char	quote;
+	size_t	i;
+
+	quote = '\0';
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '"' || str[i] == '\'')
+		{
+			if (str[i] == quote && quote != '\0')
+				quote = '\0';
+			else if (quote == '\0')
+				quote = str[i];
+		}
+		i++;
+	}
+	return (quote != '\0');
+}
 
 void	read_and_execute(void)
 {
