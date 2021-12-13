@@ -6,18 +6,12 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/23 15:40:35 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/09 18:29:07 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/13 15:44:22 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex_internal.h>
 #include <errno.h>
-
-static void	clear_tmp(void)
-{
-	close(ft_tmp_open(TMP_PIP1, O_CREAT | O_TRUNC));
-	close(ft_tmp_open(TMP_PIP2, O_CREAT | O_TRUNC));
-}
 
 void	pipex(t_strlist *lst)
 {
@@ -31,13 +25,9 @@ void	pipex(t_strlist *lst)
 		pipex_data_clear(data);
 		while (lst)
 		{
-			if (ft_strncmp(lst->str->text, "|", 2) == 0
-				|| ft_strncmp(lst->str->text, ";", 2) == 0)
+			if (ft_strncmp(lst->str->text, "|", 2) == 0)
 			{
-				if (ft_strncmp(lst->str->text, ";", 2) == 0)
-					clear_tmp();
-				else
-					data->std_in = false;
+				data->std_in = false;
 				lst = lst->next;
 				break ;
 			}
