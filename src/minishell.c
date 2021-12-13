@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/13 11:44:47 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/13 14:08:33 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ int	quotation_check(char *str)
 		}
 		i++;
 	}
+	if (quote != '\0')
+	{
+		ft_putendl_fd("minishell: invalid syntax", 1);
+		write_error_num(258 * 256);
+		free (str);
+	}
 	return (quote != '\0');
 }
 
@@ -56,6 +62,8 @@ void	read_and_execute(void)
 			exit(0);
 		}
 		get_t_vars()->in_readline = false;
+		if (quotation_check(str))
+			continue ;
 		add_history(str);
 		lst = parse_line(str);
 		pipex(lst);
@@ -74,12 +82,18 @@ void	sig_handler(int signum)
 			rl_on_new_line();
 			rl_replace_line("", 0);
 			rl_redisplay();
+			write_error_num(1 * 256);
 		}
 		else if (signum == SIGQUIT)
 		{
 			rl_on_new_line();
 			rl_redisplay();
 		}
+	}
+	else
+	{
+		write_error_num((128 + signum) * 256);
+		get_t_vars()->error_skip = true;
 	}
 }
 

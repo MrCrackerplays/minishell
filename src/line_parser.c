@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:49:49 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/10 20:17:20 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/13 12:34:57 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	should_split(t_string *line, size_t *i, char *quoted)
 	}
 	if (*quoted)
 		return (0);
-	if (line->text[*i] == ' ' || line->text[*i] == '|'
+	if (ft_isspace(line->text[*i]) || line->text[*i] == '|'
 		|| line->text[*i] == '<' || line->text[*i] == '>')
 		return (1);
 	return (0);
@@ -83,7 +83,7 @@ int	apply_parse(t_strlist **lst, t_string *str_line, size_t offset, size_t *i)
 		result = add_to_lst(lst, quote_handling_free(
 					ft_str_cut(str_line, offset, *i - offset))) != 0;
 	if (!result)
-		while (str_line->text[*i] == ' ')
+		while (ft_isspace(str_line->text[*i]))
 			(*i)++;
 	if (!result)
 		result = pipe_parse(str_line->text + *i, lst, i);
@@ -116,7 +116,7 @@ t_strlist	*parse_line(char *line)
 			i++;
 		if (apply_parse(&lst, str_line, offset, &i))
 			return (NULL);
-		while (str_line->text[i] == ' ')
+		while (ft_isspace(str_line->text[i]))
 			i++;
 		offset = i;
 	}

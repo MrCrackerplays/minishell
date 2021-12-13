@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 13:25:29 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/08 13:53:20 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/13 14:07:21 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,28 @@ t_string	*add_result(t_string *result, t_string *quoteless)
 	return (result);
 }
 
-char	get_if_quote(char first)
+char	get_replacement_quote(char current_quote, char first)
 {
+	if (current_quote != '\0')
+	{
+		if (current_quote == first)
+			return ('\0');
+		return (current_quote);
+	}
 	if (first == '\'' || first == '"')
 		return (first);
 	return ('\0');
+}
+
+int	is_end_of_block(char quote, char current)
+{
+	if (current == '\0')
+		return (1);
+	if (current == quote)
+		return (1);
+	if (quote == '\0' && (current == '\'' || current == '"'))
+		return (1);
+	return (0);
 }
 
 t_string	*quote_handling(t_string *cut)
@@ -42,20 +59,18 @@ t_string	*quote_handling(t_string *cut)
 	if (result == NULL)
 		return (NULL);
 	i = 0;
+	quote = '\0';
 	while (cut->text[i] != '\0')
 	{
-		quote = get_if_quote(cut->text[i]);
+		quote = get_replacement_quote(quote, cut->text[i]);
 		if (cut->text[i] == '\'' || cut->text[i] == '"')
 			i++;
 		start = i;
-		while (cut->text[i] != '\0' && cut->text[i] != quote
-			&& !(quote == '\0' && get_if_quote(cut->text[i]) != '\0'))
+		while (!is_end_of_block(quote, cut->text[i]))
 			i++;
 		if (i - start > 0 && add_result(result, ft_str_cut(cut, start,
 					i - start)) == NULL)
 			return (NULL);
-		if (cut->text[i] != '\0' && cut->text[i] == quote)
-			i++;
 	}
 	return (result);
 }
