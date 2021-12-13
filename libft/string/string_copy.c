@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/03 19:39:19 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/10 13:29:54 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/13 12:50:37 by pdruart       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,11 @@ void	ft_str_copy_to(t_string *des, t_string *src)
 
 void	ft_str_copy_to_s(t_string *des, char *text)
 {
-	char		*tmp;
 	t_string	*src;
 
 	if (!des || !text)
 		return ;
 	src = ft_str_new(text);
-	tmp = ft_calloc(src->len + 1, sizeof(char));
-	if (!tmp)
-		perror("libft");
-	ft_str_write_d(tmp, src->text, src->len);
-	free(des->text);
-	des->text = tmp;
-	des->len = src->len;
+	ft_str_copy_to(des, src);
+	ft_str_free(src);
 }
