@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/13 18:59:58 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/13 19:01:03 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/14 13:38:02 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	tc_off(void)
 	struct termios	attributes;
 
 	tcgetattr(STDIN_FILENO, &attributes);
-	if (!(attributes.c_lflag & ECHOCTL))
-		attributes.c_lflag += ECHOCTL;
+	attributes.c_lflag |= ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
 }

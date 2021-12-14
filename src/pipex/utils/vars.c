@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 17:23:17 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/13 18:09:11 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/14 13:40:31 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,17 @@ static void	increase_shell_lvl(void)
 	ft_strlst_free(lst);
 }
 
-void	t_vats_init(char **argv, char **envp)
+void	t_vats_init(char **envp)
 {
 	t_vars		*vars;
-	t_string	*tmps;
-	t_strlist	*tmpl;
 
 	vars = get_t_vars();
 	vars->env = NULL;
-	while (*envp && argv)
+	while (*envp)
 	{
-		tmps = ft_str_new(*envp);
-		if (!tmps)
-			ft_exit_error("malloc fail");
-		tmpl = ft_strlst_new(tmps);
-		if (!tmpl)
-			ft_exit_error("malloc fail");
-		ft_strlst_add_back(&vars->env, tmpl);
+		ft_strlst_add_back(&vars->env, ft_strlst_new(ft_str_new(*envp)));
 		envp++;
 	}
-	vars->vars = NULL;
 	vars->last_out = ft_str_new("0");
 	vars->std_out = dup(1);
 	increase_shell_lvl();

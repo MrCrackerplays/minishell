@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 14:45:24 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/13 19:01:27 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/14 13:39:32 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	tc_off(void);
 void	pipex_exit(void);
 
 t_vars	*get_t_vars(void);
-void	t_vats_init(char **argv, char **envp);
+void	t_vats_init(char **envp);
 char	*get_env_var(char *name);
 
 void	write_error_num(int num);

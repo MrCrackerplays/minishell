@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/14 13:27:33 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/14 13:39:39 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int argc, char **argv, char **envp)
 	tc_on();
 	signal(SIGINT, sig_c_handler);
 	signal(SIGQUIT, sig_d_handler);
-	t_vats_init(argv, envp);
+	t_vats_init(envp);
 	read_and_execute();
 	if (argc && argv)
 		exit(0);
