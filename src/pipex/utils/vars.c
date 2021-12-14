@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 17:23:17 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/10 19:16:51 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/13 18:09:11 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,6 @@ static void	increase_shell_lvl(void)
 	ft_strlst_free(lst);
 }
 
-// static void	set_path(char **argv)
-// {
-// 	char		*tmp;
-// 	t_string	*str;
-
-// 	tmp = getcwd(NULL, 0);
-// 	str = ft_str_new(tmp);
-// 	free(tmp);
-// 	str->text[str->len] = '/';
-// 	str->len++;
-// 	ft_str_cat_s(str, argv[0]);
-// 	get_t_vars()->path = ft_str_strip(str);
-// }
-
 void	t_vats_init(char **argv, char **envp)
 {
 	t_vars		*vars;
@@ -86,6 +72,7 @@ void	t_vats_init(char **argv, char **envp)
 	increase_shell_lvl();
 	write_error_num(0);
 	vars->in_readline = false;
+	vars->reload_mutex = true;
 }
 
 char	*get_env_var(char *name)

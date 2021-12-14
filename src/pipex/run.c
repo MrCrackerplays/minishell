@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 13:45:13 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/13 14:47:10 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/13 19:02:57 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,13 @@ void	pipex_run_command(t_pipex_data *data)
 	}
 	if (!data->com || buildins(data))
 		return ;
+	tc_off();
 	pid = fork();
 	if (pid == -1)
 		ft_exit_error("pid fail");
 	if (pid == 0)
 		child_run(data);
 	waitpid(pid, &ret, 0);
+	tc_on();
 	write_error_num(ret / 256);
 }
