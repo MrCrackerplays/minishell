@@ -23,7 +23,8 @@ OBJECTS := minishell.o line_parser.o quote_handler.o variable_expansion.o\
 	pipex/utils/pipe_close.o \
 	pipex/utils/vars.o \
 	pipex/utils/which_out.o \
-	pipex/utils/error_out.o
+	pipex/utils/error_out.o \
+	pipex/utils/tc.o
 OBJECTS := $(addprefix obj/,$(OBJECTS))
 INCLUDE := $(HOME)/.brew/opt/readline/include headers libft
 INCLUDE := $(addprefix -I,$(INCLUDE))

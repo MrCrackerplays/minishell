@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   exit.c                                             :+:    :+:            */
+/*   tc.c                                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/12/13 14:42:19 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/13 19:01:41 by rdrazsky      ########   odam.nl         */
+/*   Created: 2021/12/13 18:59:58 by rdrazsky      #+#    #+#                 */
+/*   Updated: 2021/12/13 19:01:03 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <termios.h>
 #include <pipex_internal.h>
+#include <termios.h>
 
-void	pipex_exit(void)
+void	tc_on(void)
 {
-	tc_off();
-	ft_putendl_fd("exit", 1);
-	exit(0);
+	struct termios	attributes;
+
+	tcgetattr(STDIN_FILENO, &attributes);
+	attributes.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
+}
+
+void	tc_off(void)
+{
+	struct termios	attributes;
+
+	tcgetattr(STDIN_FILENO, &attributes);
+	if (!(attributes.c_lflag & ECHOCTL))
+		attributes.c_lflag += ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
 }
