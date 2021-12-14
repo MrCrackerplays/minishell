@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/18 16:16:27 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/13 14:56:41 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/14 14:01:53 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,9 @@ void			pipex_export(t_strlist *lst);
 void			pipex_unset(t_strlist *lst);
 void			pipex_env(t_pipex_data *data);
 
-char			*get_arg(char *arg, char **envp);
 bool			get_arg2(t_string *arg);
 
-void			exec(int in, int out, char *arg, char **envp);
-void			exec2(int in, int out, t_strlist *lst, char **envp);
 void			exec3(t_strlist *lst);
-
-void			run_basic(char **argv, char **envp);
-void			run_multible(char **argv, char **envp);
 
 int				which_out(t_pipex_data *data);
 
@@ -69,8 +63,6 @@ t_pipex_data	*pipex_data_new(void);
 void			pipex_init_io(t_pipex_data *data, t_strlist *lst);
 
 void			pipex_data_clear(t_pipex_data *data);
-
-bool			pipex_io(t_strlist *parser, t_pipex_data *data);
 
 void			pipex_heredoc(t_strlist *lst, t_pipex_data *data);
 
