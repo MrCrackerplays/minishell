@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/07 13:25:29 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/13 14:07:21 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/14 13:26:30 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,24 @@ t_string	*add_result(t_string *result, t_string *quoteless)
 	return (result);
 }
 
-char	get_replacement_quote(char current_quote, char first)
+static void	set_quote_and_i(t_string *cut, size_t *i, char *quote)
 {
-	if (current_quote != '\0')
+	if ((cut->text[*i] == '\'' || cut->text[*i] == '"')
+		&& ft_strchr(cut->text + *i + 1, cut->text[*i]))
 	{
-		if (current_quote == first)
-			return ('\0');
-		return (current_quote);
+		*quote = cut->text[*i];
+		(*i)++;
 	}
-	if (first == '\'' || first == '"')
-		return (first);
-	return ('\0');
 }
 
-int	is_end_of_block(char quote, char current)
+static int	is_end_of_block2(char quote, char *cut, size_t *i)
 {
-	if (current == '\0')
+	if (cut[*i] == '\0')
 		return (1);
-	if (current == quote)
+	if (cut[*i] == quote)
 		return (1);
-	if (quote == '\0' && (current == '\'' || current == '"'))
+	if (quote == '\0' && (cut[*i] == '\'' || cut[*i] == '"')
+		&& ft_strchr(cut + *i + 1, cut[*i]))
 		return (1);
 	return (0);
 }
@@ -56,21 +54,19 @@ t_string	*quote_handling(t_string *cut)
 	t_string	*result;
 
 	result = ft_str_new("");
-	if (result == NULL)
-		return (NULL);
 	i = 0;
-	quote = '\0';
 	while (cut->text[i] != '\0')
 	{
-		quote = get_replacement_quote(quote, cut->text[i]);
-		if (cut->text[i] == '\'' || cut->text[i] == '"')
-			i++;
+		quote = '\0';
+		set_quote_and_i(cut, &i, &quote);
 		start = i;
-		while (!is_end_of_block(quote, cut->text[i]))
+		while (!is_end_of_block2(quote, cut->text, &i))
 			i++;
 		if (i - start > 0 && add_result(result, ft_str_cut(cut, start,
 					i - start)) == NULL)
 			return (NULL);
+		if (quote)
+			i++;
 	}
 	return (result);
 }

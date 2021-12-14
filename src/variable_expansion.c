@@ -6,12 +6,28 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/09 17:16:44 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/10 13:59:32 by pdruart       ########   odam.nl         */
+/*   Updated: 2021/12/13 21:51:27 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <variable_expansion.h>
 #include <pipex.h>
+
+static bool	is_in_qoutes(char *line, char *cur)
+{
+	char	quote;
+
+	quote = '\0';
+	while (line != cur)
+	{
+		if (!quote && (*line == '\'' || *line == '"'))
+			quote = *line;
+		else if (quote && quote == *line)
+			quote = '\0';
+		line++;
+	}
+	return (quote == '\'' && ft_strchr(line + 1, '\''));
+}
 
 int	insert_variable(size_t i, char *line, t_string *expanded)
 {
@@ -43,18 +59,14 @@ t_string	*expand_variables(char *line)
 {
 	t_string	*expanded;
 	size_t		i;
-	int			is_quoted;
 
 	expanded = ft_str_new(line);
 	if (expanded == NULL)
 		return (NULL);
 	i = expanded->len;
-	is_quoted = 0;
 	while (i > 0)
 	{
-		if (line[i] == '\'')
-			is_quoted = !is_quoted;
-		if (!is_quoted && line[i] == '$'
+		if (!is_in_qoutes(line, line + i) && line[i] == '$'
 			&& insert_variable(i, line, expanded) != 0)
 		{
 			ft_str_free(expanded);

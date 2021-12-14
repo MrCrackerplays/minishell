@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/05 14:12:34 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/14 13:00:07 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/14 13:27:33 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,6 @@
 #include <line_parser.h>
 
 #include <pipex.h>
-
-int	quotation_check(char *str)
-{
-	char	quote;
-	size_t	i;
-
-	quote = '\0';
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '"' || str[i] == '\'')
-		{
-			if (str[i] == quote && quote != '\0')
-				quote = '\0';
-			else if (quote == '\0')
-				quote = str[i];
-		}
-		i++;
-	}
-	if (quote != '\0')
-	{
-		ft_putendl_fd("minishell: invalid syntax", 1);
-		write_error_num(258);
-		free (str);
-	}
-	return (quote != '\0');
-}
 
 void	read_and_execute(void)
 {
@@ -59,10 +32,7 @@ void	read_and_execute(void)
 			pipex_exit();
 		get_t_vars()->in_readline = false;
 		add_history(str);
-		if (quotation_check(str))
-			continue ;
 		lst = parse_line(str);
-		ft_strlst_print(lst);
 		pipex(lst);
 		ft_strlst_free(lst);
 		free(str);
