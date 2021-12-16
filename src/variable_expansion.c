@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/09 17:16:44 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/16 12:50:01 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/16 13:14:43 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static bool	is_in_qoutes(char *line, char *cur)
 	quote = '\0';
 	while (line != cur)
 	{
-		if (!quote && (*line == '\'' || *line == '"'))
+		if (!quote && (*line == '\'' || *line == '"')
+			&& ft_strchr(line + 1, *line))
 			quote = *line;
 		else if (quote && quote == *line)
 			quote = '\0';
