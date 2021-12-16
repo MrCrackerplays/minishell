@@ -5,3 +5,4 @@
 *.a
 minishell
 tmp_*
+out*
