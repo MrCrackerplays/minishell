@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/09 17:16:44 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/16 12:40:29 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/16 12:50:01 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_string	*expand_variables(char *line)
 	if (expanded == NULL)
 		return (NULL);
 	i = expanded->len;
-	while (i > 0)
+	while (i >= 0 && i != (size_t)-1)
 	{
 		if (!is_in_qoutes(line, line + i) && line[i] == '$'
 			&& insert_variable(i, line, expanded) != 0)
