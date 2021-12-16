@@ -6,7 +6,7 @@
 /*   By: rdrazsky <rdrazsky@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 10:54:59 by rdrazsky      #+#    #+#                 */
-/*   Updated: 2021/12/08 18:40:00 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/16 13:46:04 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_strlst_remove_free(t_strlist **lst, t_strlist *element)
 		indx = *lst;
 		*lst = indx->next;
 		indx->next = NULL;
-		ft_strlst_free(indx);
+		ft_strlst_free(element);
 		return ;
 	}
 	indx = (*lst);
