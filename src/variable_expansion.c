@@ -6,7 +6,7 @@
 /*   By: pdruart <pdruart@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/09 17:16:44 by pdruart       #+#    #+#                 */
-/*   Updated: 2021/12/13 21:51:27 by rdrazsky      ########   odam.nl         */
+/*   Updated: 2021/12/16 12:40:29 by rdrazsky      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	insert_variable(size_t i, char *line, t_string *expanded)
 			return (-1);
 		if (get_env_var(cut->text + 1) != NULL)
 			ft_str_insert_s(expanded, get_env_var(cut->text + 1), offset);
-		else
-			ft_str_insert(expanded, cut, offset);
 		ft_str_free(cut);
 	}
 	return (0);
